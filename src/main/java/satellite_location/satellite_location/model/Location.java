@@ -7,8 +7,7 @@ import javax.persistence.*;
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long locationId;
+    private long satelliteId;
     private String satelliteName;
     private long elevationMask;
     private long ISLbandwith;
@@ -16,21 +15,21 @@ public class Location {
 
     public Location(){ super(); }
 
-    public Location(long locationId, String satelliteName, long elevationMask,
+    public Location(long satelliteId, String satelliteName, long elevationMask,
                     long ISLbandwith, long latitudeThreshold) {
-        this.locationId = locationId;
+        this.satelliteId = satelliteId;
         this.satelliteName = satelliteName;
         this.elevationMask = elevationMask;
         this.ISLbandwith = ISLbandwith;
         this.latitudeThreshold = latitudeThreshold;
     }
 
-    public long getLocationId() {
-        return locationId;
+    public long getSatelliteId() {
+        return satelliteId;
     }
 
-    public void setLocationId(long locationId) {
-        this.locationId = locationId;
+    public void setSatelliteId(long satelliteId) {
+        this.satelliteId = satelliteId;
     }
 
     public String getSatelliteName() {

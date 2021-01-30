@@ -7,6 +7,7 @@ import satellite_location.satellite_location.repository.LocationRepository;
 import satellite_location.satellite_location.service_interface.LocationInterface;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocationImplementation implements LocationInterface {
@@ -21,7 +22,7 @@ public class LocationImplementation implements LocationInterface {
 
     @Override
     public Location updateLocation(Location location) {
-        Location existingLocation = locationRepo.findById(location.getLocationId()).orElse(null);
+        Location existingLocation = locationRepo.findById(location.getSatelliteId()).orElse(null);
         existingLocation.setSatelliteName(location.getSatelliteName());
         existingLocation.setElevationMask(location.getElevationMask());
         existingLocation.setISLbandwith(location.getISLbandwith());
@@ -33,6 +34,11 @@ public class LocationImplementation implements LocationInterface {
     public List<Location> findAllLocation() {
         // It returns a list so casting is needed
         return (List<Location>) locationRepo.findAll();
+    }
+
+    @Override
+    public Optional<Location> getLocationDataById(long id) {
+        return (Optional<Location>) locationRepo.findById(id);
     }
 
     @Override

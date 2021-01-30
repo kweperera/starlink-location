@@ -7,6 +7,7 @@ import satellite_location.satellite_location.model.Location;
 import satellite_location.satellite_location.service_implementation.LocationImplementation;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 // Postman is used to do operations
@@ -30,6 +31,16 @@ public class LocationController {
     @GetMapping(value = "getAllLocation")
     public List<Location> findAllLocation(){
         return  locationImplementation.findAllLocation();
+    }
+
+    // Find location details by id
+    @GetMapping(value = "getLocationDataById/{id}")
+    public Location getLaunchDataById(@PathVariable ("id") Long id){
+        Optional<Location> dataRow = locationImplementation.getLocationDataById(id);
+        if(dataRow.isPresent()){
+            return dataRow.get();
+        }
+        return null;
     }
 
     // Update catalog
